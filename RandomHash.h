@@ -8,7 +8,7 @@ class PseudoRandomHash : public HashFunction<Key> {
   public:
     unsigned operator()(const Key& key, size_t table_size) const {
       srand(static_cast<long>(key));
-      return rand();
+      return rand() % table_size;
     }
 };
 
