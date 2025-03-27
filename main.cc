@@ -40,12 +40,11 @@ int main(int argc, char **argv) {
 
   // Creación de la tabla hash
   if (hash_type == "open") {
-    auto table = new HashTable<NIF, DynamicSequence<NIF>>{table_size, hash_func, block_size};
+    HashTable<NIF, DynamicSequence<NIF>>* table = new HashTable<NIF, DynamicSequence<NIF>>(table_size, hash_func, block_size);
     while (true) {
       std::cout << "Select an option:\n1. Insert\n2. Search\n3. Exit\n";
       int option;
       std::cin >> option;
-  
       if (option == 1) {
         std::cout << "Insert the value (NIF): ";
         NIF key;
@@ -57,8 +56,7 @@ int main(int argc, char **argv) {
         long nif_value;
         std::cin >> nif_value;
         NIF key(nif_value);
-        auto result = table->Search(key);
-        std::cout << (result ? "Value has been found\n" : "Key not found.\n");
+        bool result = table->Search(key);
       } else if (option == 3) {
         break;
       } else {
@@ -66,7 +64,7 @@ int main(int argc, char **argv) {
       }
     }
   } else if (hash_type == "close") {
-    auto table = new HashTable<NIF>(table_size, hash_func, exploration_func_ptr, block_size);
+    HashTable<NIF>* table = new HashTable<NIF>(table_size, hash_func, exploration_func_ptr, block_size);
     while (true) {
       std::cout << "Select an option:\n1. Insert\n2. Search\n3. Exit\n";
       int option;
@@ -82,8 +80,7 @@ int main(int argc, char **argv) {
         long nif_value;
         std::cin >> nif_value;
         NIF key(nif_value);
-        auto result = table->Search(key);
-        std::cout << (result ? "Value has been found\n" : "Key not found.\n");
+        bool result = table->Search(key);
       } else if (option == 3) {
         break;
       } else {
@@ -91,6 +88,5 @@ int main(int argc, char **argv) {
       }
     }
   }
-
   return 0;
 }

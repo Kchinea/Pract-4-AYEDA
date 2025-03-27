@@ -23,7 +23,7 @@ class HashTable {
     HashTable(unsigned, HashFunction<Key>*, ExplorationFunction<Key>*, unsigned);
     ~HashTable();
     bool Search(const Key&) const;
-    bool Insert(const Key&);
+    void Insert(const Key&);
 
   private:
     unsigned table_size_;
@@ -70,18 +70,18 @@ bool HashTable<Key, Container>::Search(const Key& key) const {
       return true;
     }
   }
-
+  std::cout << "Not found " << key << std::endl;
   return false;
 }
 
 template <class Key, class Container>
-bool HashTable<Key, Container>::Insert(const Key& key) {
+void HashTable<Key, Container>::Insert(const Key& key) {
   unsigned index = fd_->operator()(key, table_size_);
   
-  if (this->Search(key)) return false;
+  if (this->Search(key)) return;
   if (table_[index]->Insert(key)) {
     std::cout << "Inserted " << key << " at " << index << std::endl;
-    return true;
+    return;
   }
   
   const int MAX_INTENTS = table_size_;
@@ -90,11 +90,10 @@ bool HashTable<Key, Container>::Insert(const Key& key) {
     unsigned auxiliar_index = (index + exploration_value) % table_size_; 
     if (table_[auxiliar_index]->Insert(key)) {
       std::cout << "Inserted " << key << " at " << auxiliar_index << std::endl;
-      return true;
+      return;
     }
   }
-
-  return false;
+  return;
 }
 
 template <class Key>
@@ -103,7 +102,7 @@ class HashTable<Key, DynamicSequence<Key>> {
     HashTable(unsigned, HashFunction<Key>*, unsigned);
     ~HashTable();
     bool Search(const Key&) const;
-    bool Insert(const Key&);
+    void Insert(const Key&);
 
   private:
     unsigned table_size_;
@@ -130,17 +129,17 @@ bool HashTable<Key, DynamicSequence<Key>>::Search(const Key& key) const {
     std::cout << "Finded " << key << " at " << index << std::endl;
     return true;
   }
+    std::cout << "Not found " << key << std::endl;
   return false;
 }
 
 template<class Key>
-bool HashTable<Key, DynamicSequence<Key>>::Insert(const Key& key) {
+void HashTable<Key, DynamicSequence<Key>>::Insert(const Key& key) {
   unsigned index = fd_->operator()(key, table_size_);
   if (table_[index].Insert(key)) {
     std::cout << "Inserted " << key << " at " << index << std::endl;
-    return true;
   }
-  return false;
+  return;
 }
 
 #endif
