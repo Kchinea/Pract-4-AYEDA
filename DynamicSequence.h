@@ -16,8 +16,8 @@ class DynamicSequence : public Sequence<Key> {
 
 template<class Key>
 bool DynamicSequence<Key>::Search(const Key& key) const {
-  for (const Key& node_key : data_) {
-    if (node_key == key) return true;
+  for (const Key& current_key : data_) {
+    if (current_key == key) return true;
   }
   return false;
 }
@@ -29,4 +29,4 @@ bool DynamicSequence<Key>::Insert(const Key& key) {
   return true;
 }
 
-#endif  // DYNAMIC_SEQUENCE_H_
+#endif 

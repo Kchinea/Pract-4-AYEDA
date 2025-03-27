@@ -6,9 +6,8 @@
 template <class Key>
 class CuadraticExploration : public ExplorationFunction<Key> {
   public:
-    unsigned operator()(const Key& key, unsigned intent) const {
-      return intent * intent;
+    unsigned operator()(const Key& key, unsigned attempt) const {
+      return attempt * attempt;
     }
 };
-
-#endif  // CUADRATIC_EXPLORATION_H
+#endif 

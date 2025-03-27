@@ -4,11 +4,14 @@
 #include <iostream>
 #include "HashTable.h"
 #include "Nif.h"
+#include "Persona.h"
+#include "Alumno.h"
 
+template <class Key>
 class Menu {
   public:
-    static void Run(HashTable<NIF, DynamicSequence<NIF>>* table);
-    static void Run(HashTable<NIF>* table);
+    static void Run(HashTable<Key, DynamicSequence<Key>>* table);
+    static void Run(HashTable<Key>* table);
 
   private:
     template <typename TableType>

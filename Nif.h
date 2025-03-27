@@ -36,9 +36,9 @@
 class NIF {
   public:
     NIF();
-    NIF(const std::string& nif_str); // Constructor para recibir el NIF como string
+    NIF(const std::string& nif_str);
     
-    long getNumber() const; // Método para obtener el número completo (con la letra)
+    long getNumber() const; 
     
     long operator[](int) const;
     bool operator==(const NIF&) const;
@@ -52,7 +52,7 @@ class NIF {
     friend std::istream& operator>>(std::istream& is, NIF& nif);
 
   private:
-    long nif_number_; // Almacena el número con la letra transformada
+    long nif_number_; 
 };
 
 #endif

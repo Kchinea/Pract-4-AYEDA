@@ -6,9 +6,9 @@
 template <class Key>
 class LinealExploration : public ExplorationFunction<Key> {
   public:
-    unsigned operator()(const Key& key, unsigned intent) const {
-      return intent;
+    unsigned operator()(const Key& key, unsigned attempt) const {
+      return attempt;
     }
 };
 
-#endif  // LINEAL_EXPLORATION_H
+#endif 

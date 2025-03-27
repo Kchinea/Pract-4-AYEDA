@@ -3,18 +3,19 @@
 
 #include "Sequence.h"
 #include <iostream>
+#include <vector>  
 
 template <class Key>
 class StaticSequence : public Sequence<Key> {
   public:
-    StaticSequence(const unsigned blocksize) : data_{new Key[blocksize]}, blocksize_{blocksize}, to_insert_{0} {}
-    ~StaticSequence() { delete[] data_; }
+    StaticSequence(const unsigned blocksize) : data_(blocksize), blocksize_(blocksize), to_insert_(0) {}
+
     bool Search(const Key&) const;
     bool Insert(const Key&);
     bool IsFull() const { return to_insert_ == blocksize_; };
  
   private:
-    Key* data_; 
+    std::vector<Key> data_;
     unsigned blocksize_;
     unsigned to_insert_;
 };

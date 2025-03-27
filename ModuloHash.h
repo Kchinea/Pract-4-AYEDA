@@ -11,4 +11,4 @@ class ModuleHash : public HashFunction<Key> {
     }
 };
 
-#endif  // MODULO_Hash_H_
+#endif

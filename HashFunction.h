@@ -10,4 +10,4 @@ class HashFunction {
   virtual unsigned operator()(const Key&, long unsigned int table_size) const = 0;
   virtual ~HashFunction() = default;
 };
-#endif  // HASH_FUNCTION_H_
+#endif

@@ -55,18 +55,15 @@ HashTable<Key, Container>::~HashTable() {
 template <class Key, class Container>
 bool HashTable<Key, Container>::Search(const Key& key) const { 
   unsigned index = fd_->operator()(key, table_size_);
-
   if (table_[index]->Search(key)) {
-    std::cout << "Finded " << key << " at " << index << std::endl;
+    std::cout << "Was found " << key << " at " << index << std::endl;
     return true;
   }
-
-  const int MAX_INTENTS = table_size_;
-  for (unsigned i = 1; i < MAX_INTENTS; ++i) {
-    unsigned exploration_value = fe_->operator()(key, i);
-    unsigned auxiliar_index = (index + exploration_value) % table_size_; 
-    if (table_[auxiliar_index]->Search(key)) {
-      std::cout << "Finded " << key << " at " << auxiliar_index << std::endl;
+  for (unsigned i = 1; i < table_size_; ++i) {
+    unsigned exploration = fe_->operator()(key, i);
+    unsigned current_index = (index + exploration) % table_size_; 
+    if (table_[current_index]->Search(key)) {
+      std::cout << "Was found " << key << " at " << current_index << std::endl;
       return true;
     }
   }
@@ -83,12 +80,11 @@ void HashTable<Key, Container>::Insert(const Key& key) {
     std::cout << "Inserted " << key << " at " << index << std::endl;
     return;
   }
-  const int MAX = table_size_;
-  for (unsigned i = 1; i < MAX; ++i) {
-    unsigned exploration_value = fe_->operator()(key, i);
-    unsigned auxiliar_index = (index + exploration_value) % table_size_; 
-    if (table_[auxiliar_index]->Insert(key)) {
-      std::cout << "Inserted " << key << " at " << auxiliar_index << std::endl;
+  for (unsigned i = 1; i < table_size_; ++i) {
+    unsigned exploration = fe_->operator()(key, i);
+    unsigned current_index_index = (index + exploration) % table_size_; 
+    if (table_[current_index_index]->Insert(key)) {
+      std::cout << "Inserted " << key << " at " << current_index_index << std::endl;
       return;
     }
   }
@@ -125,7 +121,7 @@ template<class Key>
 bool HashTable<Key, DynamicSequence<Key>>::Search(const Key& key) const {
   unsigned index = fd_->operator()(key, table_size_);
   if (table_[index].Search(key)) {
-    std::cout << "Finded " << key << " at " << index << std::endl;
+    std::cout << "Was found " << key << " at " << index << std::endl;
     return true;
   }
     std::cout << "Not found " << key << std::endl;

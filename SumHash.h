@@ -15,4 +15,4 @@ class SumHash : public HashFunction<Key> {
     }
 };
 
-#endif  // SUMHASH_H_
+#endif
