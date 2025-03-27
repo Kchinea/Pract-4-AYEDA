@@ -14,7 +14,7 @@
 #include "StaticSequence.h"
 #include "DynamicSequence.h"
 
-
+#include <iostream>
 #include <vector>
 
 template <class Key, class Container = StaticSequence<Key>>
@@ -83,7 +83,6 @@ void HashTable<Key, Container>::Insert(const Key& key) {
     std::cout << "Inserted " << key << " at " << index << std::endl;
     return;
   }
-  
   const int MAX_INTENTS = table_size_;
   for (unsigned i = 1; i < MAX_INTENTS; ++i) {
     unsigned exploration_value = fe_->operator()(key, i);

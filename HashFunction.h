@@ -1,6 +1,8 @@
 #ifndef HASH_FUNCTION_H_
 #define HASH_FUNCTION_H_
 
+#include <cstdlib>
+
 
 template <class Key>
 class HashFunction {

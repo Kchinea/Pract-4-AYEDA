@@ -2,6 +2,7 @@
 #define STATIC_SEQUENCE_H_
 
 #include "Sequence.h"
+#include <iostream>
 
 template <class Key>
 class StaticSequence : public Sequence<Key> {
@@ -27,7 +28,7 @@ bool StaticSequence<Key>::Search(const Key& key) const {
 }
 
 template <class Key>
-bool StaticSequence<Key>::Insert(const Key& key) { //que me lo explique el guille
+bool StaticSequence<Key>::Insert(const Key& key) {
   if (Search(key) || IsFull()) return false;
   data_[to_insert_++] = key;
   return true;
