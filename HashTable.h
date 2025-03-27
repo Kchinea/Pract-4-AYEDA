@@ -83,8 +83,8 @@ void HashTable<Key, Container>::Insert(const Key& key) {
     std::cout << "Inserted " << key << " at " << index << std::endl;
     return;
   }
-  const int MAX_INTENTS = table_size_;
-  for (unsigned i = 1; i < MAX_INTENTS; ++i) {
+  const int MAX = table_size_;
+  for (unsigned i = 1; i < MAX; ++i) {
     unsigned exploration_value = fe_->operator()(key, i);
     unsigned auxiliar_index = (index + exploration_value) % table_size_; 
     if (table_[auxiliar_index]->Insert(key)) {
@@ -104,9 +104,9 @@ class HashTable<Key, DynamicSequence<Key>> {
     void Insert(const Key&);
 
   private:
+  HashFunction<Key>* fd_;
+  DynamicSequence<Key>* table_; 
     unsigned table_size_;
-    HashFunction<Key>* fd_;
-    DynamicSequence<Key>* table_; 
 };
 
 template<class Key>

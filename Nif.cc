@@ -69,7 +69,7 @@ NIF::NIF(const std::string& nif_str) {
 }
 
 long NIF::getNumber() const {
-    return nif_number_;
+  return nif_number_;
 }
 
 bool NIF::operator==(const NIF& number) const {
@@ -93,20 +93,16 @@ long NIF::operator[](int index) const {
 }
 
 long unsigned int NIF::size() const{
-    return 10;
+  return 10;
 }
 
 NIF::operator long() const {
-    return this->nif_number_;
+  return this->nif_number_;
 }
 
 std::istream& operator>>(std::istream& is, NIF& nif) {
   std::string input;
   is >> input;
-  try {
-      nif = NIF(input);
-  } catch (const std::invalid_argument& e) {
-      is.setstate(std::ios::failbit);
-  }
+  nif = NIF(input);
   return is;
 }
