@@ -8,7 +8,7 @@ class DoubleDispersionExploration : public ExplorationFunction<Key> {
   public:
     DoubleDispersionExploration(HashFunction<Key>& hash) : hash_{hash} {}; 
     unsigned operator()(const Key& key, unsigned intent) const {
-      return hash_(key, 100000000000000000) * intent;
+      return hash_(key, this->max) * intent;
     }
   private: 
     HashFunction<Key>& hash_;
